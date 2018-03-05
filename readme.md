@@ -1,7 +1,15 @@
 # multiplot
 Plot multiple (upto four) graphs in different scales in a single figure with scrollable x (horizontal) axis. 
 
-## Sample Usage
+## Requirements 
+[mplcursors](https://mplcursors.readthedocs.io/en/stable/),[matplotlib](https://matplotlib.org), [pandas](https://pandas.pydata.org)
+
+## Usage
+'''python
+import multiplot
+multiplot.multiplot(X, pointsPerFrame, [Y1, Y2, Y3, Y4])
+```
+## Example
 ```python
 import numpy as np
 import pandas as pd 

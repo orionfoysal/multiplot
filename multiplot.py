@@ -47,8 +47,12 @@ def multiplot(x,step,y):
     lines = []
     lines.append(ax.plot(x, y[0])[0])
     ax.axis([x[0], x[step], min(y[0]), max(y[0])])
-    ax.set_ylabel(y[0].name)
-    ax.set_xlabel(x.name)
+    try:
+        ax.set_ylabel(y[0].name)
+        ax.set_xlabel(x.name)
+    except:
+        ax.set_ylabel('Y1')
+        ax.set_xlabel('X')
     axpos = plt.axes([0.2, 0.1, 0.65, 0.03], facecolor='white')
     slider_max = len(x) - step - 1
     spos = Slider(axpos, 'Pos', 0, slider_max)
@@ -57,8 +61,10 @@ def multiplot(x,step,y):
         ax2 = ax.twinx()
         lines.append(ax2.plot(x,y[1],color='tab:red')[0])
         ax2.axis([x[0], x[step], min(y[1]), max(y[1])])
-        ax2.set_ylabel(y[1].name)
-
+        try:
+            ax2.set_ylabel(y[1].name)
+        except:
+            ax2.set_ylabel('Y2')
     if len(y) > 2:    
         ax3 = ax.twinx()
         ax3.spines["right"].set_position(("axes", 1.1))
@@ -70,7 +76,10 @@ def multiplot(x,step,y):
         ax3.spines["right"].set_visible(True)
         lines.append(ax3.plot(x,y[2],color='tab:green')[0])
         ax3.axis([x[0], x[step], min(y[2]), max(y[2])])
-        ax3.set_ylabel(y[2].name)
+        try:
+            ax3.set_ylabel(y[2].name)
+        except:
+            ax3.set_ylabel('Y3')
 
     if len(y) > 3:
         ax4 = ax.twinx()
@@ -83,7 +92,10 @@ def multiplot(x,step,y):
         ax4.spines["right"].set_visible(True)
         lines.append(ax4.plot(x,y[3],color='tab:orange')[0])
         ax4.axis([x[0], x[step], min(y[3]), max(y[3])])
-        ax4.set_ylabel(y[3].name)
+        try:
+            ax4.set_ylabel(y[3].name)
+        except:
+            ax4.set_ylabel('Y4')
 
     ax.legend(lines, [l.get_label() for l in lines])
 
