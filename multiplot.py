@@ -36,9 +36,10 @@ def make_patch_spines_invisible(ax):
 
 #     print('Max difference between consecutive '+ y[j].name + ' :'+ str(temp))
 
-def multiplot(x,step,y1,y2=None,y3=None,y4=None):
+def multiplot(x,step,y):
     x = x 
-    y = [y1, y2, y3, y4]
+    y = y
+    step = int(step)
     fig, ax = plt.subplots()
     plt.subplots_adjust(bottom=0.25)
     fig.subplots_adjust(right=0.75)
@@ -52,13 +53,13 @@ def multiplot(x,step,y1,y2=None,y3=None,y4=None):
     slider_max = len(x) - step - 1
     spos = Slider(axpos, 'Pos', 0, slider_max)
 
-    if y[1] != None:
+    if len(y) > 1:
         ax2 = ax.twinx()
         lines.append(ax2.plot(x,y[1],color='tab:red')[0])
         ax2.axis([x[0], x[step], min(y[1]), max(y[1])])
         ax2.set_ylabel(y[1].name)
 
-    if y[2] != None:    
+    if len(y) > 2:    
         ax3 = ax.twinx()
         ax3.spines["right"].set_position(("axes", 1.1))
         # Having been created by twinx, par2 has its frame off, so the line of its
@@ -71,7 +72,7 @@ def multiplot(x,step,y1,y2=None,y3=None,y4=None):
         ax3.axis([x[0], x[step], min(y[2]), max(y[2])])
         ax3.set_ylabel(y[2].name)
 
-    if y[3] != None:
+    if len(y) > 3:
         ax4 = ax.twinx()
         ax4.spines["right"].set_position(("axes", 1.2))
         # Having been created by twinx, par2 has its frame off, so the line of its
@@ -80,7 +81,7 @@ def multiplot(x,step,y1,y2=None,y3=None,y4=None):
         make_patch_spines_invisible(ax4)
         # Second, show the right spine.
         ax4.spines["right"].set_visible(True)
-        lines.append(ax4.plot(x,y[3],color='tab:red')[0])
+        lines.append(ax4.plot(x,y[3],color='tab:orange')[0])
         ax4.axis([x[0], x[step], min(y[3]), max(y[3])])
         ax4.set_ylabel(y[3].name)
 
